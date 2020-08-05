@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    tools:ignore="MissingConstraints">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="415dp"

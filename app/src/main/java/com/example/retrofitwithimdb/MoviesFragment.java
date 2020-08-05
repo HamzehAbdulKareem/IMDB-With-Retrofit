@@ -1,12 +1,13 @@
 package com.example.retrofitwithimdb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class MoviesFragment extends Fragment {
     TextView textView;
     MovieRecyclerAdapter.ItemClickListener listener;
     View root;
+    SwipeRefreshLayout swiper;
+    DataRefresher refreshData;
     static MovieResults movieResults2;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,7 +42,6 @@ public class MoviesFragment extends Fragment {
     private String mParam2;
 
     public MoviesFragment() {
-        // Required empty public constructor
     }
 
 
@@ -67,6 +69,14 @@ public class MoviesFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.i("state","Fragment launched");
         root =  inflater.inflate(R.layout.fragment_details, container, false);
+        swiper = root.findViewById(R.id.swiper);
+        swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recall();
+                swiper.setRefreshing(false);
+            }
+        });
         setOnClickListner();
         callMovieRecyclerAdapter();
 
@@ -103,4 +113,17 @@ public class MoviesFragment extends Fragment {
         adapter.addItems(results);
     }
 
+    public void recall(){
+       refreshData.renewData();
+
+    }
+
+    public interface DataRefresher {
+        void renewData();
+    }
+
+
+    public void setRefreshData(DataRefresher refreshData) {
+        this.refreshData = refreshData;
+    }
 }

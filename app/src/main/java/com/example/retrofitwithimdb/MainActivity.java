@@ -16,9 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
 
 
 import com.google.android.material.tabs.TabLayout;
@@ -35,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     PagerAdapter pagerAdapter;
+    MoviesFragment.DataRefresher mostPopRef = new MoviesFragment.DataRefresher() {
+        @Override
+        public void renewData() {
+        getMostPopular();
+        }
+    };
+
+    MoviesFragment.DataRefresher topRatRef = new MoviesFragment.DataRefresher() {
+        @Override
+        public void renewData() {
+            getTopRated();
+        }
+    };
 
     @Override
     protected void attachBaseContext(Context newBase){
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         LocHelper.onAttach(this);
         setContentView(R.layout.activity_main);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),this);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),this,mostPopRef,topRatRef);
 
          getMostPopular();
 
@@ -179,5 +190,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#fafafa"));
         tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
     }
+
 
 }
