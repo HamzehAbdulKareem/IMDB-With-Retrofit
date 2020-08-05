@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class MoviesFragment extends Fragment {
     MovieRecyclerAdapter adapter;
     ArrayList<MovieResults> results = new ArrayList<>();
-TextView textView;
+    TextView textView;
     MovieRecyclerAdapter.ItemClickListener listener;
     View root;
     static MovieResults movieResults2;
@@ -65,12 +65,9 @@ TextView textView;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Inflate the layout for this fragment
         Log.i("state","Fragment launched");
         root =  inflater.inflate(R.layout.fragment_details, container, false);
-        Toast.makeText(getContext(),getArguments().getString(ARG_PARAM1),Toast.LENGTH_SHORT).show();
         setOnClickListner();
-        Toast.makeText(getContext(),"Welcome",Toast.LENGTH_SHORT).show();
         callMovieRecyclerAdapter();
 
         return root;
@@ -80,15 +77,13 @@ TextView textView;
     public View callMovieRecyclerAdapter(){
         RecyclerView recyclerView = root.findViewById(R.id.MovieRecyceler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MovieRecyclerAdapter(getContext(), getArguments().getParcelableArrayList(ARG_PARAM1),listener);
-        adapter.addItems(getArguments().getParcelableArrayList(ARG_PARAM1));
+        adapter = new MovieRecyclerAdapter(getContext(), results,listener);
         recyclerView.setAdapter(adapter);
 
         return recyclerView;
     }
 
     private  void setOnClickListner() {
-        results = getArguments().getParcelableArrayList(ARG_PARAM1);
         listener = new MovieRecyclerAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -101,6 +96,11 @@ TextView textView;
 
             }
         };
+    }
+
+    public void setResults (ArrayList<MovieResults> arrayResults){
+        this.results = arrayResults;
+        adapter.addItems(results);
     }
 
 }
