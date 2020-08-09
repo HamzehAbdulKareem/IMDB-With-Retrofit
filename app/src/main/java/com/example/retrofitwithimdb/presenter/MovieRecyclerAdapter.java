@@ -1,8 +1,6 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.presenter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.retrofitwithimdb.R;
+import com.example.retrofitwithimdb.models.MovieResults;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class MovieRecyclerAdapter extends  RecyclerView.Adapter<MovieRecyclerAda
     }
 
     // data is passed into the constructor
-    MovieRecyclerAdapter(Context context, List<MovieResults> data, ItemClickListener list) {
+    public MovieRecyclerAdapter(Context context, List<MovieResults> data, ItemClickListener list) {
         this.mInflater = LayoutInflater.from(context);
 //        this.mData = data;
         this.mClickListener = list;

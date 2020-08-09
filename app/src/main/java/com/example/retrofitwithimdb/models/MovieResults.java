@@ -1,4 +1,4 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

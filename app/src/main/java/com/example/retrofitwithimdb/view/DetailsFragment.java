@@ -1,15 +1,16 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.view;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.retrofitwithimdb.R;
+import com.example.retrofitwithimdb.models.DetailsClass;
 
 /**
  * A simple {@link Fragment} subclass.

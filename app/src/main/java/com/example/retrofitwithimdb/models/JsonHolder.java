@@ -1,4 +1,7 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
+
+import com.example.retrofitwithimdb.models.DetailsClass;
+import com.example.retrofitwithimdb.models.MovieClass;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

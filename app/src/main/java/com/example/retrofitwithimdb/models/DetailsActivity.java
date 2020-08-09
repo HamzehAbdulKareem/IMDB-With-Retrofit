@@ -1,12 +1,13 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.retrofitwithimdb.view.DetailsFragment;
+import com.example.retrofitwithimdb.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;

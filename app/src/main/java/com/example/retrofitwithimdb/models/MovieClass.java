@@ -1,4 +1,4 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ public class MovieClass implements Parcelable {
     int page;
     int total_results;
     int total_pages;
-    ArrayList <MovieResults> results;
+    public ArrayList <MovieResults> results;
 
     protected MovieClass(Parcel in) {
         page = in.readInt();

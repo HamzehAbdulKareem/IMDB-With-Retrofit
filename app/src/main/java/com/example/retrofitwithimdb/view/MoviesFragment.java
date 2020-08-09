@@ -1,7 +1,5 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.view;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.retrofitwithimdb.R;
+import com.example.retrofitwithimdb.models.MovieClass;
+import com.example.retrofitwithimdb.models.MovieResults;
+import com.example.retrofitwithimdb.presenter.MovieRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,8 @@ public class MoviesFragment extends Fragment {
     View root;
     SwipeRefreshLayout swiper;
     DataRefresher refreshData;
-    static MovieResults movieResults2;
+    DataGetter dataGetter;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "selectedMovie";
@@ -98,11 +101,10 @@ public class MoviesFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
 
-                Intent intent = new Intent(getContext(),DetailsActivity.class);
-                Bundle bundle = new Bundle();
-                int id = results.get(position).getId();
-                intent.putExtra("ID",id);
-                startActivity(intent);
+
+                dataGetter.getData(results.get(position).getId());
+
+
 
             }
         };
@@ -120,6 +122,12 @@ public class MoviesFragment extends Fragment {
 
     public interface DataRefresher {
         void renewData();
+    }
+    public interface DataGetter{
+        void getData(int id);
+    }
+    public void setDataGetter(DataGetter a){
+        this.dataGetter = a;
     }
 
 

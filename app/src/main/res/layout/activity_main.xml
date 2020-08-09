@@ -5,7 +5,9 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".models.MainActivity"
+    android:background="@color/Darkest"
+    android:theme="@style/Theme.AppCompat">
 
     tools:ignore="MissingConstraints">
     <androidx.viewpager.widget.ViewPager

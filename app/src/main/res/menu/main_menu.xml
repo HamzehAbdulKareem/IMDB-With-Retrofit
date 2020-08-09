@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".models.MainActivity">
+
+<item android:id="@+id/changeLanguageButton"
+    app:showAsAction="always" android:title="Change Language" android:icon="@drawable/earthicon">
+
+</item>
+
+<item android:id="@+id/userButton" app:showAsAction="always"
+    android:icon="@drawable/accouticon" android:title="Welcome" />
+
+
+
+
+
+
+</menu>

@@ -1,4 +1,4 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
 
 public class DetailsClass {
     boolean adult, video;
@@ -6,10 +6,10 @@ public class DetailsClass {
     int budget, id, revenue, runtime, vote_count;
     String homepage, imdb_id, original_language, original_title, overview, poster_path, status, tagline, title;
     double popularity, vote_average;
-    Genres [] genres;
-    ProductionCompaniesClass [] production_companies;
-    ProductionCountresClass [] production_countries;
-    SpokenLanguagesClass [] spoken_languages;
+    Genres[] genres;
+    ProductionCompaniesClass[] production_companies;
+    ProductionCountresClass[] production_countries;
+    SpokenLanguagesClass[] spoken_languages;
 
     public boolean isAdult() {
         return adult;

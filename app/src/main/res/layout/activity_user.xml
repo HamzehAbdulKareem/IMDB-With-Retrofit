@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.UserLoginActivity"
+    android:background="@color/Darkest"
+    android:id="@+id/userFragLayout">
+
+    <EditText
+        android:id="@+id/loginEmailText"
+        android:layout_width="251dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="108dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/White"/>
+
+    <EditText
+        android:id="@+id/loginPasswordText"
+        android:layout_width="251dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="192dp"
+        android:background="@color/White"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="131dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="68dp"
+        android:text="LogIn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPasswordText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="71dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="44dp"
+        android:text="OR"
+        android:textAlignment="center"
+        android:textColor="@color/White"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="131dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="32dp"
+        android:text="SignUp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

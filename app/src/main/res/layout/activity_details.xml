@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity"
-    android:id="@+id/aaLayout">
+    tools:context=".models.DetailsActivity"
+    android:id="@+id/aaLayout"
+    android:background="@color/Darkest">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

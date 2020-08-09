@@ -1,4 +1,4 @@
-package com.example.retrofitwithimdb;
+package com.example.retrofitwithimdb.models;
 
 public class ProductionCountresClass {
     String iso_3166_1;

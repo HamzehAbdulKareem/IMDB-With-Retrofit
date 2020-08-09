@@ -4,7 +4,8 @@
     android:id="@+id/testText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoviesFragment">
+    tools:context=".view.MoviesFragment"
+    android:background="@color/Darkest">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="wrap_content"

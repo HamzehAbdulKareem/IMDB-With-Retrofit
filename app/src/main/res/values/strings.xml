@@ -4,4 +4,7 @@
     <string name="tr">TOP RATED</string>
     <string name="pop">MOST POPLAR</string>
     <string name="lan">CHANGE LANGUAGE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="dialogload">Loading</string>
+    <string name="baseurl" translatable="false">https://api.themoviedb.org/</string>
 </resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "487775785483",
+    "firebase_url": "https://imdb-99d82.firebaseio.com",
+    "project_id": "imdb-99d82",
+    "storage_bucket": "imdb-99d82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487775785483:android:78eefae17873a9db13ad0e",
+        "android_client_info": {
+          "package_name": "com.example.retrofitwithimdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487775785483-0d3vigfssqcbpensseflggjdonf3e4rn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDurnJbxlYYculi1iE-GY_W2WFfVc_Zi2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487775785483-0d3vigfssqcbpensseflggjdonf3e4rn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
