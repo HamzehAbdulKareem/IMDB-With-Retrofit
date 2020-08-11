@@ -64,14 +64,23 @@ public class MoviesFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+  }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Log.i("state","Fragment launched");
         root =  inflater.inflate(R.layout.fragment_details, container, false);
+        setOnClickListner();
+        callMovieRecyclerAdapter();
         swiper = root.findViewById(R.id.swiper);
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -80,8 +89,7 @@ public class MoviesFragment extends Fragment {
                 swiper.setRefreshing(false);
             }
         });
-        setOnClickListner();
-        callMovieRecyclerAdapter();
+
 
         return root;
     }

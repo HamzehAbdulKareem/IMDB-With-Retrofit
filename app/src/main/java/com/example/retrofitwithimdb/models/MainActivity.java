@@ -127,10 +127,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         LocHelper.onAttach(this);
         setContentView(R.layout.activity_main);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this, mostPopRef, topRatRef, dGetter);
-        viewPager = findViewById(R.id.pager);
-        viewPager.setAdapter(pagerAdapter);
-        setupTabLayout();
+
 
 
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -157,8 +154,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-
+        Log.i("entered","resumed");
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), MainActivity.this, mostPopRef, topRatRef, dGetter);
+        viewPager = findViewById(R.id.pager);
+        viewPager.setAdapter(pagerAdapter);
+        setupTabLayout();
         getMostPopular();
 
         getTopRated();
