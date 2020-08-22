@@ -33,6 +33,12 @@ import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.Locale;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -130,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -172,28 +179,36 @@ public class MainActivity extends AppCompatActivity {
 
         JsonHolder jsonHolder = retrofit.create(JsonHolder.class);
 
-        Call<MovieClass> call = jsonHolder.getPopular();
 
-        call.enqueue(new Callback<MovieClass>() {
+        Observable<MovieClass> observable = jsonHolder.getPopular().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+
+        Observer<MovieClass> observer = new Observer<MovieClass>() {
             @Override
-            public void onResponse(Call<MovieClass> call, Response<MovieClass> response) {
-                if (!response.isSuccessful()) {
-                    Log.i("results", "error retrieving");
-                    return;
-                }
-                Log.i("results", response.body().results.toString());
-                pagerAdapter.setMostPopularResults(response.body().results);
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
+            }
+
+            @Override
+            public void onNext(@io.reactivex.rxjava3.annotations.NonNull MovieClass movieClass) {
+                pagerAdapter.setMostPopularResults(movieClass.results);
                 pagerAdapter.notifyDataSetChanged();
 
-
             }
 
             @Override
-            public void onFailure(Call<MovieClass> call, Throwable t) {
-                Log.i("res", t.toString());
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+                Log.i("error",e.toString());
             }
-        });
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+
+        observable.subscribe(observer);
+
+
 
     }
 
@@ -203,26 +218,31 @@ public class MainActivity extends AppCompatActivity {
 
         JsonHolder jsonHolder = retrofit.create(JsonHolder.class);
 
-        Call<MovieClass> call = jsonHolder.getTopRated();
-
-        call.enqueue(new Callback<MovieClass>() {
+        Observable<MovieClass> topRatedObservable = jsonHolder.getTopRated().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        Observer<MovieClass> topRatedObserver = new Observer<MovieClass>() {
             @Override
-            public void onResponse(Call<MovieClass> call, Response<MovieClass> response) {
-                if (!response.isSuccessful()) {
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
-                    return;
-                }
-                pagerAdapter.setTopRatedResults(response.body().results);
+            }
+
+            @Override
+            public void onNext(@io.reactivex.rxjava3.annotations.NonNull MovieClass movieClass) {
+                pagerAdapter.setTopRatedResults(movieClass.results);
                 pagerAdapter.notifyDataSetChanged();
-                Log.i("res", response.body().toString());
+            }
+
+            @Override
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
 
             }
 
             @Override
-            public void onFailure(Call<MovieClass> call, Throwable t) {
-                Log.i("res", t.toString());
+            public void onComplete() {
+
             }
-        });
+        };
+
+        topRatedObservable.subscribe(topRatedObserver);
     }
 
 
@@ -253,27 +273,35 @@ public class MainActivity extends AppCompatActivity {
 
         JsonHolder jsonHolder = retrofit.create(JsonHolder.class);
 
-        Call<DetailsClass> call = jsonHolder.getMovieDetails(id);
-        call.enqueue(new Callback<DetailsClass>() {
+        Observable<DetailsClass> getDetailsObservable = jsonHolder.getMovieDetails(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        Observer<DetailsClass> getDetailsObserver = new Observer<DetailsClass>() {
             @Override
-            public void onResponse(Call<DetailsClass> call, Response<DetailsClass> response) {
-                dialogl.dismiss();
-                if (!response.isSuccessful()) {
-                    Log.i("response :", Integer.toString(response.code()));
+            public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
 
-                }
-                DetailsClass detailsFragment = new DetailsClass();
-                DetailsClass responseResult = response.body();
+            }
 
-                DetailsDialog detailsDialog = new DetailsDialog(responseResult.getTitle(), Double.toString(responseResult.getPopularity()), Boolean.toString(responseResult.isAdult()), responseResult.getStatus(), Double.toString(responseResult.getVote_average()), Double.toString(responseResult.getVote_count()));
+            @Override
+            public void onNext(@io.reactivex.rxjava3.annotations.NonNull DetailsClass detailsClass) {
+
+                DetailsDialog detailsDialog = new DetailsDialog(detailsClass.getTitle(), Double.toString(detailsClass.getPopularity()), Boolean.toString(detailsClass.isAdult()), detailsClass.getStatus(), Double.toString(detailsClass.getVote_average()), Double.toString(detailsClass.getVote_count()));
                 detailsDialog.show(getSupportFragmentManager(), "Details");
+                dialogl.dismiss();
             }
 
             @Override
-            public void onFailure(Call<DetailsClass> call, Throwable t) {
-                Log.i("Response error", t.toString());
+            public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
             }
-        });
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+
+        getDetailsObservable.subscribe(getDetailsObserver);
+
+
     }
 
 

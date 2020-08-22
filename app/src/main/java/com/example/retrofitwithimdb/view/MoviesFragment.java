@@ -77,9 +77,11 @@ public class MoviesFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Log.i("state","Fragment launched");
         root =  inflater.inflate(R.layout.fragment_details, container, false);
         setOnClickListner();
+        adapter = new MovieRecyclerAdapter(getContext(), results,listener);
         callMovieRecyclerAdapter();
         swiper = root.findViewById(R.id.swiper);
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -98,7 +100,6 @@ public class MoviesFragment extends Fragment {
     public View callMovieRecyclerAdapter(){
         RecyclerView recyclerView = root.findViewById(R.id.MovieRecyceler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MovieRecyclerAdapter(getContext(), results,listener);
         recyclerView.setAdapter(adapter);
 
         return recyclerView;
